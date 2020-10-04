@@ -1,1 +1,11 @@
+// Installing Django and dependencies 
+// Draai met pytho3. Het lijkt voor Django niet uit te maken maar Daphne (een compoment van channels) werkt niet meer met python2.
+//
+sudo apt install python3-pip
+sudo apt install libffi-dev 
+sudo apt install libssl-dev
+
+python3 -m pip install Django
+python3 -m pip install pathlib
+python3 -m pip install channels
 
