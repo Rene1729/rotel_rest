@@ -9,3 +9,7 @@ python3 -m pip install Django
 python3 -m pip install pathlib
 python3 -m pip install channels
 
+// Starten met.
+python3 manage.py runserver 0.0.0.0:8000
+
+Let op de ASGI/Channels in de startup message.....    Starting ASGI/Channels version 2.4.0 development server at http://0.0.0.0:8000/

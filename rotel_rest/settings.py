@@ -25,7 +25,7 @@ SECRET_KEY = 'wrc@evx*%qw_0v%d_%tn(b7nt_*=g#r5y0y4$)04tg*1fw8q%$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
