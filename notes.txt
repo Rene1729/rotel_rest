@@ -1,15 +1,23 @@
 // Installing Django and dependencies 
-// Draai met pytho3. Het lijkt voor Django niet uit te maken maar Daphne (een compoment van channels) werkt niet meer met python2.
+// Draai met python3. Het lijkt voor Django niet uit te maken maar Daphne (een compoment van channels) werkt niet meer met python2.
 //
 sudo apt install python3-pip
 sudo apt install libffi-dev 
 sudo apt install libssl-dev
+sudo apt install redis-server
 
 python3 -m pip install Django
 python3 -m pip install pathlib
 python3 -m pip install channels
+python3 -m pip install pyserial
+python3 -m pip install channels_redis
 
-// Starten met.
+// Starten met:
 python3 manage.py runserver 0.0.0.0:8000
+
+// Worker(s) starten met:
+python3 manage.py runworker rotel-channel 
+
+//Redis moet draaien voor de communicatie tussen server en workers.
 
 Let op de ASGI/Channels in de startup message.....    Starting ASGI/Channels version 2.4.0 development server at http://0.0.0.0:8000/
