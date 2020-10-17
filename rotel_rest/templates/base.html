@@ -1,13 +1,47 @@
-<html>
-  <head>
-  <title>Rotel Remote</title>
-  </head>
-  <body>
-    <h1 id="site-name">Rotel Remote Control</h1><br/>
-    <div id="content-main">
-      {% block content %}
-      {{ content }}
-      {% endblock %}
+{% extends 'custom_bootstrap.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block bootstrap_extra_head %}
+ <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css">
+{% endblock %}
+
+{% block body_attrib %}
+class="dashboard"
+{% endblock %}
+
+
+
+
+{% block bootstrap4_content %}
+  {% block navbar %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        {% block navbar-left %}
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">{% block brand %}Rotel remote control{% endblock %}</a>
+          </div>
+        {% endblock %}
+        {% block navbar-right %}
+        {% endblock %}
+      </div>
+    </nav>
+  {% endblock %}
+  {% block whole_page %}
+    <div class="container-fluid">
+      <div class="row">
+        </div>
+        {# Main page #}
+        {% block page %}
+          <div class="col-sx-12 col-md-12 main">
+            <p class="page-header">{% block title %}{% endblock %}</p>
+            {% bootstrap_messages %}
+            {% block content %}
+            {% endblock content %}
+          </div>
+        {% endblock page %}
+      </div>
     </div>
-  </body>
-</html>
+  {% endblock %}
+{% endblock %}
+

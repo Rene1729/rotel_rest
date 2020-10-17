@@ -1,4 +1,50 @@
 {% extends 'base.html' %}
-{% block content %}
-<h4>Test rotel rome control server</h4>
+
+{% block bootstrap_extra_script %}
+<script>
+function update_display()
+{
+  $.get('/rotel_getvalue/disp', function(data, status){$("#display").html(data['value']);});
+}
+
+function send_command(command)
+{
+  $.get( '/rotel_sendcommand/' + command
+       , function(data, status){ /*$('#feedback').html(data);*/ }
+       );
+  update_display();
+}
+
+update_display();
+</script>
 {% endblock %}
+
+{% block title %}
+<div class="container col-xs-12 col-lg-12">
+  <div class="card bg-primary">
+    <div class="card-header">
+      <div class="d-flex">
+        <div class="mr-auto">LCD display</div>
+        <div class=""><button type="submit" onclick="update_display();" class="btn btn-info btn-sm">refresh</button></div>
+      </div>
+    </div>
+    <div class="card-body bg-white" id="display"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container col-xs-12 col-lg-12">
+  <div class="card">
+    <div class="card-header">Select command</div>
+    <div class="card-body">
+      <div class="d-inline-flex">
+        <div class="p-2"><button type="submit" onclick="send_command('p-on');" class="btn btn-success">On</button></div>
+        <div class="p-2"><button type="submit" onclick="send_command('p-off');" class="btn btn-warning">Off</button></div>
+        <div class="p-2"><button type="submit" onclick="send_command('m-tog');" class="btn btn-primary">Toggel Mute</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

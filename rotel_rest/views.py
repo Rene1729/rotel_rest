@@ -1,6 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 import json
 
@@ -19,7 +19,8 @@ def rotel_sendcommand(request, command):
 
   response_message = async_to_sync(channel_layer.receive)(return_channel)
 
-  return HttpResponse(json.dumps(response_message), content_type='text/plain')
+  # return HttpResponse(json.dumps(response_message), content_type='text/plain')
+  return JsonResponse(response_message)
 
 
 def rotel_getvalue(request, command):
@@ -31,7 +32,8 @@ def rotel_getvalue(request, command):
 
   response_message = async_to_sync(channel_layer.receive)(return_channel)
 
-  return HttpResponse(json.dumps(response_message), content_type='text/plain')
+  # return HttpResponse(json.dumps(response_message), content_type='text/plain')
+  return JsonResponse(response_message)
 
 
 def rotel_setvalue(request, command, value):
@@ -53,4 +55,5 @@ def rotel_wakeup(request):
                                                      , 'return_chan':  return_channel
                                                      })
 
-  return HttpResponse('OK', content_type='text/plain')
+  # return HttpResponse('OK', content_type='text/plain')
+  return JsonResponse({'OK'})
