@@ -29,18 +29,13 @@ class="dashboard"
   {% endblock %}
   {% block whole_page %}
     <div class="container-fluid">
-      <div class="row">
-        </div>
-        {# Main page #}
-        {% block page %}
-          <div class="col-sx-12 col-md-12 main">
-            <p class="page-header">{% block title %}{% endblock %}</p>
-            {% bootstrap_messages %}
-            {% block content %}
-            {% endblock content %}
-          </div>
-        {% endblock page %}
-      </div>
+      {# Main page #}
+      {% block page %}
+          <p class="page-header">{% block title %}{% endblock %}</p>
+          {% bootstrap_messages %}
+          {% block content %}
+          {% endblock content %}
+      {% endblock page %}
     </div>
   {% endblock %}
 {% endblock %}

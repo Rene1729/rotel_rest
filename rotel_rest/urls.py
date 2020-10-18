@@ -22,6 +22,6 @@ urlpatterns = [
   path('rotel_setvalue/<str:command>/<int:value>', views.rotel_setvalue),    
   path('rotel_getvalue/<str:command>', views.rotel_getvalue),    
   path('rotel_sendcommand/<str:command>', views.rotel_sendcommand),    
-  path('rotel_wakeup/', views.rotel_wakeup),    
+  path('rotel_rest', views.rotel_rest),    
   ## path('admin/', admin.site.urls),
 ]

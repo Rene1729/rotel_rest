@@ -10,9 +10,21 @@ function update_display()
 function send_command(command)
 {
   $.get( '/rotel_sendcommand/' + command
-       , function(data, status){ /*$('#feedback').html(data);*/ }
+       , function(data, status)
+         { /*$('#feedback').html(data);*/ 
+           update_display();
+         }
        );
-  update_display();
+}
+
+function set_value(command, value)
+{
+  $.get( '/rotel_setvalue/' + command + '/' + value
+       , function(data, status)
+         { /*$('#feedback').html(data);*/ 
+           update_display();
+         }
+       );
 }
 
 update_display();
@@ -20,31 +32,79 @@ update_display();
 {% endblock %}
 
 {% block title %}
-<div class="container col-xs-12 col-lg-12">
   <div class="card bg-primary">
     <div class="card-header">
       <div class="d-flex">
-        <div class="mr-auto">LCD display</div>
+        <div class="mr-auto">Displayed text</div>
         <div class=""><button type="submit" onclick="update_display();" class="btn btn-info btn-sm">refresh</button></div>
       </div>
     </div>
     <div class="card-body bg-white" id="display"></div>
   </div>
-</div>
 {% endblock %}
 
 {% block content %}
-<div class="container col-xs-12 col-lg-12">
-  <div class="card">
+  <div class="card pb-3">
     <div class="card-header">Select command</div>
     <div class="card-body">
-      <div class="d-inline-flex">
-        <div class="p-2"><button type="submit" onclick="send_command('p-on');" class="btn btn-success">On</button></div>
-        <div class="p-2"><button type="submit" onclick="send_command('p-off');" class="btn btn-warning">Off</button></div>
-        <div class="p-2"><button type="submit" onclick="send_command('m-tog');" class="btn btn-primary">Toggel Mute</button></div>
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('p-on');" class="btn btn-success">Power On</button>
+        <button type="button" onclick="send_command('p-off');" class="btn btn-warning">Power Off</button>
+      </div>
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('wakeup');" class="btn btn-outline-success">Wakeup</button>
+      </div>
+      <div class="btn-group pb-3">
+        <button type="submit" onclick="send_command('m-off');" class="btn btn-outline-primary">Mute off</button>
+        <button type="submit" onclick="send_command('m-tog');" class="btn btn-outline-primary">Toggel Mute</button>
+        <button type="submit" onclick="send_command('m-on');" class="btn btn-outline-primary">Mute on</button>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="card pb-3">
+    <div class="card-header">Volume and Tone</div>
+    <div class="card-body">
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('v-dwn');" class="btn btn-outline-primary">Volume Down</button>
+        <button type="button" onclick="set_value('vol', '30');" class="btn btn-outline-primary">Volume Default</button>
+        <button type="button" onclick="send_command('v-up');" class="btn btn-outline-primary">Volume Up</button>
+      </div>
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('t-off');" class="btn btn-outline-primary">Tone Bypass</button>
+        <button type="button" onclick="send_command('t-on');" class="btn btn-outline-primary">Tone On</button>
+      </div>
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('t-dwn');" class="btn btn-outline-primary">Treble Down</button>
+        <button type="button" onclick="send_command('t-0');" class="btn btn-outline-primary">Treble 0</button>
+        <button type="button" onclick="send_command('t-up');" class="btn btn-outline-primary">Treble Up</button>
+      </div>
+      <div class="btn-group pb-3">
+        <button type="button" onclick="send_command('b-dwn');" class="btn btn-outline-primary">Bass Down</button>
+        <button type="button" onclick="send_command('b-0');" class="btn btn-outline-primary">Bass 0</button>
+        <button type="button" onclick="send_command('b-up');" class="btn btn-outline-primary">Bass Up</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card pb-3">
+    <div class="card-header">Input</div>
+    <div class="card-body">
+      <div class="btn-group flex-wrap">
+        <button type="button" onclick="send_command('coax1');" class="btn btn-outline-primary">Coax 1</button>
+        <button type="button" onclick="send_command('coax2');" class="btn btn-outline-primary">Coax 2</button>
+        <button type="button" onclick="send_command('opt1');" class="btn btn-outline-primary">Optical 1</button>
+        <button type="button" onclick="send_command('opt2');" class="btn btn-outline-primary">Optical 2</button>
+        <button type="button" onclick="send_command('aux1');" class="btn btn-outline-primary">Aux 1</button>
+        <button type="button" onclick="send_command('aux2');" class="btn btn-outline-primary">Aux 2</button>
+        <button type="button" onclick="send_command('cd');" class="btn btn-outline-primary">Analog CD</button>
+        <button type="button" onclick="send_command('tuner');" class="btn btn-outline-primary">Tuner</button>
+        <button type="button" onclick="send_command('phono');" class="btn btn-outline-primary">Phono</button>
+        <button type="button" onclick="send_command('usb');" class="btn btn-outline-primary">USB</button>
+        <button type="button" onclick="send_command('rcd');" class="btn btn-outline-primary">Rotel CD</button>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}
 
