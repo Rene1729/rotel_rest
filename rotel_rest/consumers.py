@@ -53,6 +53,7 @@ class RotelConsumer(SyncConsumer):
                   , 'pow':    [b'get_current_power!',  r'power=(?P<value>\w+)!']
                   , 'src':    [b'get_current_source!', r'source=(?P<value>\w+)!']
                   , 'tone':   [b'get_tone!',           r'tone=(?P<value>\w+)!']
+                  , 'mute':   [b'get_display!',        r'(?P<value>VOL)'] ##Look at text VOL in display to check if mute is on. Returns VOL if mute is off.
                   , 'bass':   [b'get_bass!',           r'bass=(?P<value>\w+)!']
                   , 'treble': [b'get_treble!',         r'treble=(?P<value>\w+)!']
                   , 'bal':    [b'get_balance!',        r'balance=(?P<value>\w+)!']
