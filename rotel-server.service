@@ -1,0 +1,13 @@
+[Unit]
+Description=Rotel Server 
+After=network.target auditd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 manage.py runserver 0.0.0.0:8000
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Alias=rotel-server.service

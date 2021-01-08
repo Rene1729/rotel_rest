@@ -1,0 +1,13 @@
+[Unit]
+Description=Rotel Worker
+After=network.target auditd.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/python3 manage.py runworker rotel-channel
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Alias=rotel-worker.service
