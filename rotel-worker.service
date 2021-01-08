@@ -1,12 +1,15 @@
 [Unit]
 Description=Rotel Worker
 After=network.target auditd.service
+StartLimitIntervalSec=30s
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/python3 manage.py runworker rotel-channel
+ExecStart=/usr/bin/python3 /home/pi/rotel_rest/manage.py runworker rotel-channel
+WorkingDirectory=/home/pi/rotel_rest
 KillMode=process
-Restart=on-failure
+RestartSec=5
+User=pi
+Restart=always
 
 [Install]
 WantedBy=multi-user.target

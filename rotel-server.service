@@ -1,12 +1,15 @@
 [Unit]
 Description=Rotel Server 
 After=network.target auditd.service
+StartLimitIntervalSec=30s
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/python3 manage.py runserver 0.0.0.0:8000
+ExecStart=/usr/bin/python3 /home/pi/rotel_rest/manage.py runserver 0.0.0.0:8000
+WorkingDirectory=/home/pi/rotel_rest
 KillMode=process
-Restart=on-failure
+RestartSec=5
+User=pi
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
